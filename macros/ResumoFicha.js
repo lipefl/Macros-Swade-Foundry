@@ -1,12 +1,12 @@
-//v1.1
+//v1.2
 let persona=canvas.tokens.controlled[0].actor;
 let attrPerson=[];
 
-attrPerson['agility']=parseInt(persona.data.data.attributes.agility.die.sides);
-attrPerson['spirit']=parseInt(persona.data.data.attributes.spirit.die.sides);
-attrPerson['strength']=parseInt(persona.data.data.attributes.strength.die.sides);
-attrPerson['smarts']=parseInt(persona.data.data.attributes.smarts.die.sides);
-attrPerson['vigor']=parseInt(persona.data.data.attributes.vigor.die.sides);
+attrPerson['agility']=parseInt(persona.system.attributes.agility.die.sides);
+attrPerson['spirit']=parseInt(persona.system.attributes.spirit.die.sides);
+attrPerson['strength']=parseInt(persona.system.attributes.strength.die.sides);
+attrPerson['smarts']=parseInt(persona.system.attributes.smarts.die.sides);
+attrPerson['vigor']=parseInt(persona.system.attributes.vigor.die.sides);
 
 let attpoints=0;
 let skillpoints=0;
@@ -20,8 +20,8 @@ let skills=persona.items.filter((el) => el.type == "skill");
 
 for (let i=0;i<skills.length;i++){
     if (skills[i].name.indexOf('*')<0){
-    let skillval=parseInt(skills[i].data.data.die.sides);
-    let atassoc=attrPerson[skills[i].data.data.attribute];
+    let skillval=parseInt(skills[i].system.die.sides);
+    let atassoc=attrPerson[skills[i].system.attribute];
     skillpoints+=(skillval/2)-1;
 
     if(atassoc<skillval){
@@ -37,7 +37,7 @@ edgesnum=persona.items.filter((el) => el.type == "edge" && el.name.indexOf('*')<
 let hinds=persona.items.filter((el) => el.type == "hindrance" && el.name.indexOf('*')<0);
 
 for (let i=0;i<hinds.length;i++){
-    if (hinds[i].data.data.major){
+    if (hinds[i].system.major){
         hindpoints+=2;
     } else {
         hindpoints++;
@@ -49,7 +49,7 @@ let equips=persona.items.filter((el) => equipstypes.includes(el.type) && el.name
 
 
 for (let i=0;i<equips.length;i++){
-    equipval+=equips[i].data.data.price;
+    equipval+=equips[i].system.price;
 }
 
 let attpts=attpoints-5;
