@@ -1,4 +1,4 @@
-// v1.0
+// v1.1
 // Enviar cartas para jogadores criando as mãos
 // construído com a ajuda do CHAT GPT 4
 // Função para criar o diálogo e obter as informações
@@ -92,7 +92,7 @@ if (informacoes) {
   const { quantidade, baralhoId, resetar, entregarPara, jogadoresSelecionados } = informacoes;
   const baralho = game.cards.get(baralhoId);
 
-  let jogadores = game.users.players.filter(jogador => !jogador.isGM);
+  let jogadores = game.users.players.filter(jogador => !jogador.isGM && jogador.active);
   
   if (entregarPara === "selecionados") {
     jogadores = jogadores.filter(jogador => jogadoresSelecionados.includes(jogador.id));
