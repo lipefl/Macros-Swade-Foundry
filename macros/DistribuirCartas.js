@@ -25,7 +25,7 @@ async function obterInformacoes() {
           <div class="form-group">
             <label>Entregar para:</label>
             <select name="entregarPara">
-              <option value="todos">Todos os Jogadores</option>
+              <option value="todos">Todos os Jogadores presentes</option>
               <option value="selecionados">Jogadores Selecionados</option>
             </select>
           </div>
