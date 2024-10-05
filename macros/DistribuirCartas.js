@@ -1,4 +1,4 @@
-// v1.1
+// v1.2
 // Enviar cartas para jogadores criando as mãos
 // construído com a ajuda do CHAT GPT 4
 // Função para criar o diálogo e obter as informações
@@ -25,7 +25,7 @@ async function obterInformacoes() {
           <div class="form-group">
             <label>Entregar para:</label>
             <select name="entregarPara">
-              <option value="todos">Todos os Jogadores presentes</option>
+              <option value="todos">Todos os Jogadores</option>
               <option value="selecionados">Jogadores Selecionados</option>
             </select>
           </div>
@@ -118,20 +118,10 @@ if (informacoes) {
         cards: []
       });
 
-      // Configurar permissões para todos os jogadores
-      const permissoes = {};
-      game.users.players.forEach(user => {
-        permissoes[user.id] = 3; // 3 significa permissão de "proprietário"
-      });
-      await maoExistente.update({ permission: permissoes });
-    } else {
-      // Configurar permissões para todos os jogadores na mão existente
-      const permissoes = {};
-      game.users.players.forEach(user => {
-        permissoes[user.id] = 3; // 3 significa permissão de "proprietário"
-      });
-      await maoExistente.update({ permission: permissoes });
-    }
+     
+    } 
+
+   await maoExistente.update({'ownership.default':3});
 
     // Distribuir as cartas para a mão do jogador
     await distribuirCartas(maoExistente, baralho, quantidade);
